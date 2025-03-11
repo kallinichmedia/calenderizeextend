@@ -1,0 +1,210 @@
+{namespace c=HDNET\Calendarize\ViewHelpers}
+{namespace kmcext=Km\KmCalendarizeext\ViewHelpers}
+
+<f:alias map="{event: index.originalObject}">
+
+	<f:debug>{_all}</f:debug>
+	<div class="calendarize-details" 
+		data-fee="{event.fee}" 
+		data-eventtype="{event.eventtype}" 
+		data-costspernight="{event.costspernight}" 
+		data-overnightstays="{event.overnightstays}" 
+		data-request="{event.request}" 
+		data-maxpersons="{event.maxpersons}" 
+		data-title="{event.title}">
+
+	
+		<h1>
+			<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}"/>
+			<c:titleTag><f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}"/></c:titleTag>
+		</h1>
+		<p class="state-{index.state}"><strong>
+			<f:if condition="{index.state}=='2'">
+				<f:then>
+					<span id="dataEventDate">Termine nach Absprache</span>
+				</f:then>
+				<f:else>
+					<f:comment>
+						<f:render partial="DateInformation" arguments="{index: index}"/>
+					</f:comment>
+					<span id="dataEventDate">
+					<f:if condition="{index.state}=='1'">
+						<f:then>
+							Terminbekanntgabe folgt
+						</f:then>
+						<f:else>
+							<f:if condition="{event.request}">
+								<f:then>
+									auf Anfrage
+								</f:then>
+								<f:else>
+									Tage: {index.startDate->f:format.date(format: 'd. m.')}<f:if condition="{index.startDate->f:format.date(format: 'd.m.')} != {index.endDate->f:format.date(format: 'd.m.')}"> bis {index.endDate->f:format.date(format: 'd. m.')}</f:if> {index.endDate->f:format.date(format: 'Y')}<br>
+									<f:comment>
+										<kmcext:Diffdays startDate="{index.startDate}" endDate="{index.endDate}" /> Tag(e)<br/>
+									</f:comment>
+								</f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+					</span>
+					
+					
+					Dauer: <f:format.date format="{f:translate(key: 'timeFormat')}">{index.startTime -3600}</f:format.date> - <f:format.date format="{f:translate(key: 'timeFormat')}">{index.endTime - 3600}</f:format.date> Uhr
+				</f:else>
+			</f:if></strong>
+		</p>
+
+				
+				
+		<div class="btn-group">
+			<f:if condition="{settings.listPid}">
+				<f:link.page pageUid="{settings.listPid}" class="btn btn-default">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+					<f:translate key="back"/>
+				</f:link.page>
+			</f:if>
+
+			<f:comment>
+				<f:link.action action="detail" arguments="{index: index}" format="ics" class="btn btn-default">ICS/iCal
+				</f:link.action>
+			</f:comment>
+		</div>		
+
+
+		<table class="schulungsTable">
+			<tbody><tr>
+					<td class="stleft" valign="top">Ort</td>
+					<td class="stright" id="event-location">
+						<f:if condition="{event.location}">
+							<f:then>
+								{event.location->f:format.raw()}
+							</f:then>
+							<f:else>
+								
+								<f:switch expression="{event.eventtype}">
+									<f:case value="1">
+										Online
+									</f:case>
+									<f:case value="2">
+										nach Abstimmung / beim Kunden vor Ort
+									</f:case>
+									<f:defaultCase>
+										Abhängig von der Teilnehmerzahl, findet die Schulung in Erfurt oder in Weimar statt.
+									</f:defaultCase>
+								</f:switch>
+							</f:else>
+						</f:if>
+					</td>
+				</tr>
+				<f:if condition="{event.targetgroup}">
+					<tr>
+						<td class="stleft" valign="top">Zielgruppe</td>
+						<td class="stright" id="event-targetgroup">{event.targetgroup->f:format.raw()}</td>
+					</tr>
+				</f:if>
+				<tr>
+					<td class="stleft">Teilnahmegebühr pro Person</td>
+					<td class="stright" id="eventcosts"><span class="schgeb">{event.fee}</span>,00 € zzgl. MwSt.</td>
+				</tr>
+				<f:if condition="{event.eventtype} == 0">
+					<tr class="hotel">
+						<td class="stleft hotel">Übernachtungkosten pro Person und Nacht</td>
+						<td class="stright hotel" id="hotelcosts">
+							<span class="overnightstays">{event.overnightstays}</span> x 
+							<span class="hotel">{event.costspernight}</span>,00 € zzgl. MwSt.                                            
+						</td>
+					</tr>
+				</f:if>
+				
+			</tbody>
+		</table>
+
+		<div class="text">
+			<f:format.html>{event.description}</f:format.html>
+		</div>
+
+		<f:comment>
+			Category example (also possible in list view):
+			<div class="categories">
+				<f:for each="{event.categories}" as="category" iteration="itemIteration">
+					<span class="category c{category.uid}"><i class="fa fa-tags"></i>&nbsp;{category.title}</span>
+				</f:for>
+			</div>
+		</f:comment>
+
+		<dl class="dl-horizontal meta">
+			<f:if condition="{event.location}">
+				<dt><f:translate key="tx_calendarize_domain_model_event.location" />:</dt>
+				<dd>
+					<f:if condition="{event.locationLink}">
+						<f:then>
+							<f:link.typolink parameter="{event.locationLink}">{event.location}</f:link.typolink>
+						</f:then>
+						<f:else>
+							{event.location}
+						</f:else>
+					</f:if>
+				</dd>
+			</f:if>
+			<f:if condition="{event.organizer}">
+				<dt><f:translate key="tx_calendarize_domain_model_event.organizer" />:</dt>
+				<dd>
+					<f:if condition="{event.organizerLink}">
+						<f:then>
+							<f:link.typolink parameter="{event.organizerLink}">{event.organizer}</f:link.typolink>
+						</f:then>
+						<f:else>
+							{event.organizer}
+						</f:else>
+					</f:if>
+				</dd>
+			</f:if>
+		</dl>
+
+		<f:if condition="{event.images}">
+			<div class="images">
+				<f:for each="{event.images}" as="image" iteration="i">
+					<f:if condition="{image.originalResource.type}==4">
+						<f:then>
+							<f:media file="{image}" />
+						</f:then>
+						<f:else>
+							<f:image image="{image}" alt="" maxWidth="300" class="img-rounded"/>
+						</f:else>
+					</f:if>
+				</f:for>
+			</div>
+		</f:if>
+
+		<f:if condition="{event.downloads}">
+			<div class="downloads">
+				<f:for each="{event.downloads}" as="download" iteration="i">
+					<a href="{download.originalResource.publicUrl}">{download.originalResource.publicUrl}</a>
+				</f:for>
+			</div>
+		</f:if>
+
+		<f:if condition="{settings.bookingPid}">
+			<f:if condition="{event.bookable}">
+				<c:link.booking index="{index}" class="btn btn-default btn-primary">
+					<f:translate key="booking"/>
+					<span class="glyphicon glyphicon-arrow-right"></span>
+				</c:link.booking>
+			</f:if>
+		</f:if>
+
+		<div class="btn-group">
+			<f:if condition="{settings.listPid}">
+				<f:link.page pageUid="{settings.listPid}" class="btn btn-default">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+					<f:translate key="back"/>
+				</f:link.page>
+			</f:if>
+			
+		</div>
+	</div>
+</f:alias>
+
+<c:ifExtensionLoaded extensionKey="schema">
+	<f:render partial="{index.configuration.partialIdentifier}/StructuredData/Detail" arguments="{index: index}"/>
+</c:ifExtensionLoaded>

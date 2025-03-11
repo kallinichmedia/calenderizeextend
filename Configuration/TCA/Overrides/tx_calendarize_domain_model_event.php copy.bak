@@ -1,0 +1,285 @@
+<?php
+defined('TYPO3') || die();
+
+if (!isset($GLOBALS['TCA']['tx_calendarize_domain_model_event']['ctrl']['type'])) {
+    // no type field defined, so we define it here. This will only happen the first time the extension is installed!!
+    $GLOBALS['TCA']['tx_calendarize_domain_model_event']['ctrl']['type'] = 'tx_extbase_type';
+    $tempColumnstx_kmcalendarizeext_tx_calendarize_domain_model_event = [];
+    $tempColumnstx_kmcalendarizeext_tx_calendarize_domain_model_event[$GLOBALS['TCA']['tx_calendarize_domain_model_event']['ctrl']['type']] = [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext.tx_extbase_type',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['', ''],
+                ['Events', 'Tx_KmCalendarizeext_Events']
+            ],
+            'default' => 'Tx_KmCalendarizeext_Events',
+            'size' => 1,
+            'maxitems' => 1,            
+        ]
+    ];
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_calendarize_domain_model_event', $tempColumnstx_kmcalendarizeext_tx_calendarize_domain_model_event);
+}
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+    'tx_calendarize_domain_model_event',
+    $GLOBALS['TCA']['tx_calendarize_domain_model_event']['ctrl']['type'],
+    '',
+    'after:' . $GLOBALS['TCA']['tx_calendarize_domain_model_event']['ctrl']['label']
+);
+
+// plaettes: common, costs, location, requierments
+$tmp_km_calendarizeext_palettes = [
+
+    'common' => [
+        'showitem' => 'new, request, show_requirements, semester, --linebreak--, eventtype, eventform, targetgroup, --linebreak--, requirments, maxpersons',
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.pal_common',
+        'description' => '',
+    ],
+    'costs' => [
+        'showitem' => 'fee, costspernight, overnightstays',
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.pal_costs',
+        'description' => '',
+    ],
+    'location' => [
+        /* 'showitem' => 'qundis_location, --linebreak--, location_text', */
+        'showitem' => 'qundis_location, --linebreak--',
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.pal_location',
+        'description' => '',        
+    ],   
+
+];
+
+$tmp_km_calendarizeext_columns = [
+
+
+    'new' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.new',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                ]
+            ],
+            'default' => 0,
+        ]
+    ],
+    'request' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.request',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                ]
+            ],
+            'default' => 0,
+        ]
+    ],
+    'eventtype' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.eventtype',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.eventtype.presence', 0],
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.eventtype.online', 1],
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.eventtype.coaching', 2],
+            ],
+            'size' => 1,
+            'maxitems' => 1,
+            'eval' => ''
+        ],
+    ],
+
+    /*
+                Training
+                Schulung
+                Practical workshop
+                Praxis-Workshop
+                Technical seminar
+                Technikseminar
+                Coaching module
+                Coaching-Modul
+                Certification
+                Zertifizierung
+                MsbG-Coaching
+                MsbG-Choaching
+
+    */
+    'eventform' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                /* ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.training', 0], */
+                /* ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.cert', 4],  */
+                /* ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.coaching', 3],  */
+                /* ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.workshop', 1], */
+                /* ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.technical',2 ], */
+                /* ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.msbg', 5], */
+                // Q AMR, Q walk-by, Technik und Rauchwarnmelder
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.qamr', 6],
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.qwalkby', 7],
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.technik', 8],
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.form.rauchmelder',9],
+                
+                
+            ],
+            'size' => 1,
+            'maxitems' => 1,
+            'eval' => ''
+        ], 
+    ],
+    'qundis_location' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.qundis_location',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                ]
+            ],
+            'default' => 0,
+        ]
+    ],
+    'fee' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.fee',
+        'config' => [
+            'type' => 'input',
+            'size' => 4,
+            'eval' => 'int',
+            'default' => 0
+        ]
+    ],
+    'costspernight' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.costspernight',
+        'config' => [
+            'type' => 'input',
+            'size' => 4,
+            'eval' => 'int',
+            'default' => 0
+        ]
+    ],
+    'location_text' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.location_text',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'default' => '',
+        ]
+    ],
+    'targetgroup' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.targetgroup',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'default' => ''
+        ]
+    ],
+    'show_requirements' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.show_requirements',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'items' => [
+                [
+                    0 => '',
+                    1 => '',
+                ]
+            ],
+            'default' => 0,
+        ]
+    ],
+    'requirments' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.requirments',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'default' => ''
+        ]
+    ],
+    'overnightstays' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.overnightstays',
+        'config' => [
+            'type' => 'input',
+            'size' => 4,
+            'eval' => 'int',
+            'default' => 0
+        ]        
+    ],
+    'maxpersons' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.maxpersons',
+        'config' => [
+            'type' => 'input',
+            'size' => 4,
+            'eval' => 'int',
+            'default' => 0
+        ]        
+    ],
+    'semester' => [
+        'exclude' => true,
+        'label' => 'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.semester',
+        'config' => [
+            'type' => 'select',
+            'renderType' => 'selectSingle',
+            'items' => [
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.semester.sem1', 0],
+                ['LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events.semester.sem2', 1],
+            ],
+            'size' => 1,
+            'maxitems' => 1,
+            'eval' => ''
+        ],
+    ],
+
+];
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_calendarize_domain_model_event', $tmp_km_calendarizeext_columns);
+
+// inherit and extend the show items from the parent class
+if (isset($GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['1']['showitem'])) {
+    $GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['Tx_KmCalendarizeext_Events']['showitem'] = $GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['1']['showitem'];
+} elseif (is_array($GLOBALS['TCA']['tx_calendarize_domain_model_event']['types'])) {
+    // use first entry in types array
+    $tx_calendarize_domain_model_event_type_definition = reset($GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']);
+    $GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['Tx_KmCalendarizeext_Events']['showitem'] = $tx_calendarize_domain_model_event_type_definition['showitem'];
+} else {
+    $GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['Tx_KmCalendarizeext_Events']['showitem'] = '';
+}
+$GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['Tx_KmCalendarizeext_Events']['showitem'] .= ',--div--;LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_kmcalendarizeext_domain_model_events,';
+
+/* $GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['Tx_KmCalendarizeext_Events']['showitem'] .= 'new, semester, overnightstays, eventtype, fee, costspernight, qundis_location, location_text, targetgroup, show_requirements, requirments'; */
+// merge  palettes 
+
+$GLOBALS['TCA']['tx_calendarize_domain_model_event']['palettes'] = array_merge($GLOBALS['TCA']['tx_calendarize_domain_model_event']['palettes'], $tmp_km_calendarizeext_palettes);
+
+$GLOBALS['TCA']['tx_calendarize_domain_model_event']['types']['Tx_KmCalendarizeext_Events']['showitem'] .= ',--palette--;;common, --palette--;;costs, --palette--;;location';
+
+$GLOBALS['TCA']['tx_calendarize_domain_model_event']['columns'][$GLOBALS['TCA']['tx_calendarize_domain_model_event']['ctrl']['type']]['config']['items'][] = [
+    'LLL:EXT:km_calendarizeext/Resources/Private/Language/locallang_db.xlf:tx_calendarize_domain_model_event.tx_extbase_type.Tx_KmCalendarizeext_Events',
+    'Tx_KmCalendarizeext_Events'
+];

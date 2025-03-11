@@ -1,0 +1,26 @@
+plugin.tx_calendarize {
+  view {
+    templateRootPaths {
+      150 = EXT:km_calendarizeext/Resources/Private/Templates/
+    }
+    partialRootPaths {
+      150 = EXT:km_calendarizeext/Resources/Private/Partials/
+    }
+    layoutRootPaths {
+      150 = EXT:km_calendarizeext/Resources/Private/Layouts/
+    }
+  }
+}
+
+plugin.tx_calendarize {
+    persistence {
+        classes {
+            HDNET\Calendarize\Domain\Model\Event {
+                mapping {
+                    tableName = tx_calendarize_domain_model_event
+                    recordType = Km\KmCalendarizeext\Domain\Model\Event
+                }
+            }
+        }
+    }
+}

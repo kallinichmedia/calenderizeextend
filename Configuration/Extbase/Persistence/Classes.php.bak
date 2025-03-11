@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    \Km\KmCalendarizeext\Domain\Model\Events::class => [
+        'tableName' => 'tx_calendarize_domain_model_event',        
+    ],
+    \Km\KmCalendarizeext\Domain\Model\CustomIndex::class => [
+        'tableName' => 'tx_calendarize_domain_model_index',
+    ],
+    \HDNET\Calendarize\Domain\Repository\IndexRepository::class => [
+        'substitute' => \Km\KmCalendarizeext\Domain\Repository\CustomIndexRepository::class,
+    ],
+
+];

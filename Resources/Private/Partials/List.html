@@ -1,0 +1,115 @@
+
+
+
+<f:if condition="{searchMode}">
+	<f:render partial="Event/SearchInformation" arguments="{searchParameter: searchParameter, indices: indices}" />
+</f:if>
+
+<f:if condition="{contentObject.rowDescription} == 'latest'">
+	<f:then>
+		<f:if condition="{indices -> f:count()}">
+			<f:then>
+				<div class="eventslistLatest">
+			
+					<f:for each="{indices}" iteration="eventIteration" as="index">
+							<f:render partial="{index.configuration.partialIdentifier}/ListItemLatest" arguments="{index: index, cycle: eventIteration.cycle}" />
+						</f:for>
+				</div>
+			</f:then>
+			<f:else>
+				<div class="no-events-message text-center">
+					<b><f:format.raw><f:translate key="no_events" /></f:format.raw></b>
+				</div>
+			</f:else>
+		
+		</f:if>
+	</f:then>
+
+	<f:else>
+		<div class="eventsearchbox">
+			<form id="filterbox" class="js-filterform">
+				<input type="text" name="filter_searchphrase" placeholder="Suchbegriff" id="filter_searchphrase">
+		
+				<select name="filter_eventtype" id="filter_eventtype">
+					<option value="all">Präsenz / Online</option>
+					<option value="0">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.presence', extensionName="km_calendarizeext")}</option>
+					<option value="1">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.online', extensionName="km_calendarizeext")}</option>			
+				</select>
+		
+				<select name="filter_eventform" id="filter_eventform">
+					<option value="all">Typ</option>
+					
+					<f:comment>
+						<option value="0">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.training', extensionName="km_calendarizeext")}</option>
+						<option value="4">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.cert', extensionName="km_calendarizeext")}</option>			
+						<option value="3">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.coaching', extensionName="km_calendarizeext")}</option>			
+					</f:comment>
+					
+					<!-- qamr, qwalkby, technik, rauchmelder -->
+					<option value="6">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.qamr', extensionName="km_calendarizeext")}</option>		
+					<option value="7">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.qwalkby', extensionName="km_calendarizeext")}</option>		
+					<option value="8">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.technik', extensionName="km_calendarizeext")}</option>		
+					<option value="9">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.form.rauchmelder', extensionName="km_calendarizeext")}</option>		
+	
+				</select>
+		
+				<!-- Date Range Picker -->
+		
+				<div class="input-group input-daterange">
+					<input type="date" class="form-control" name="filter_startdate" id="filter_startdate" value="" />
+					<span class="input-group-addon">bis</span>
+					<input type="date" class="form-control" name="filter_enddate" id="filter_enddate" value="" />
+				</div>
+		
+				<button class="btn btn-primary" id="resetFilter">Filter zurücksetzen</button>
+			</form>
+		</div>
+		
+		<f:if condition="{indices -> f:count()}">
+			<f:then>
+				<div class="eventslist js-schulungen" id="eventslist">
+			
+					<f:if condition="{settings.hidePagination}">
+						<f:then>
+							<f:for each="{indices}" iteration="eventIteration" as="index">
+								<f:render partial="{index.configuration.partialIdentifier}/ListItem" arguments="{index: index, cycle: eventIteration.cycle}" />
+							</f:for>
+						</f:then>
+						<f:else>
+							<f:if condition="{settings.paginateConfiguration.insertAbove -> f:or(alternative:0)}">
+								<f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, searchMode: searchMode}" />
+							</f:if>
+							<f:for each="{pagination.paginator.paginatedItems}" iteration="eventIteration" as="index">
+								<f:render partial="{index.configuration.partialIdentifier}/ListItem" arguments="{index: index, cycle: eventIteration.cycle}" />
+							</f:for>
+							<f:if condition="{settings.paginateConfiguration.insertBelow -> f:or(alternative:1)}">
+								<f:render partial="Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator, searchMode: searchMode}" />
+							</f:if>
+						</f:else>
+					</f:if>
+				</div>
+			</f:then>
+			<f:else>
+				<div class="no-events-message text-center">
+					<b><f:format.raw><f:translate key="no_events" /></f:format.raw></b>
+				</div>
+			</f:else>
+		
+		</f:if>
+		
+		<div id="noresultMessage">
+			<p>
+				<span class="icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+					<path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+				  </svg></span>
+				<b>Zu die aktuellen Filter-Einstellungen</br>
+				existieren keine passenden Schulungsangebote.</b>
+			</p>
+		</div>
+		
+	</f:else>
+</f:if>
+
+
+

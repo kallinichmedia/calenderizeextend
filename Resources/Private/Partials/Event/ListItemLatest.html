@@ -1,0 +1,76 @@
+{namespace c=HDNET\Calendarize\ViewHelpers}
+{namespace kmcext=Km\KmCalendarizeext\ViewHelpers}
+
+<f:alias map="{event: index.originalObject}">
+
+
+	<div class="panel js-schulung event panel-default neu-{event.new} state-{index.state}" 
+		data-request="{event.request}"
+		data-eventtype="{event.eventtype}" 
+		data-eventform="{event.eventform}" 
+		data-abstract="{event.abstract}" 
+		data-new="{f:if(condition: '{event.new}', then: '1', else: '0')}" 
+		data-startdate="{index.startDate->f:format.date(format: 'Y-m-d')}" 
+		data-enddate="{index.endDate->f:format.date(format: 'Y-m-d')}" 
+		data-position="{cycle}">
+		<div class="panel-body">
+			<div class="topPart">
+				<div class="metabar">
+					<f:comment>
+						<span class="eventtype">
+							<f:switch expression="{event.eventtype}">
+								<f:case value="1">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.online', extensionName="km_calendarizeext")}</f:case>
+								<f:case value="2">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.coaching', extensionName="km_calendarizeext")}</f:case>
+								<f:defaultCase>{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.presence', extensionName="km_calendarizeext")}</f:defaultCase>
+							</f:switch>
+						</span>
+					</f:comment>
+
+					<f:if condition="{event.new}">
+						<span class="divider"></span>
+						<span class="newtag">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.new', extensionName="km_calendarizeext")}</span>
+					</f:if>
+				</div>
+
+				<p class="title">
+					<f:if condition="{settings.detailPid}">							
+						<c:link.index index="{index}">
+							<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+						</c:link.index>
+					</f:if>
+				</p>				
+				
+			</div>	
+
+			<div class="bottomPart">
+				<p class="eventdate">
+					<f:if condition="{index.state}=='1'">
+						<f:then>
+							Terminbekanntgabe folgt
+						</f:then>
+						<f:else>
+							<f:if condition="{event.request}">
+								<f:then>
+									auf Anfrage
+								</f:then>
+								<f:else>
+									{index.startDate->f:format.date(format: 'd.m.')}
+									<f:if condition="{index.startDate->f:format.date(format: 'd.m.')} != {index.endDate->f:format.date(format: 'd.m.')}">
+										bis {index.endDate->f:format.date(format: 'd.m.')}
+									</f:if>
+									{index.endDate->f:format.date(format: 'Y')}
+								</f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+				</p>				
+			
+				
+			</div>
+
+		
+			
+		</div>
+	</div>
+</f:alias>
+

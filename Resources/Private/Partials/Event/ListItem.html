@@ -1,0 +1,194 @@
+{namespace c=HDNET\Calendarize\ViewHelpers}
+{namespace kmcext=Km\KmCalendarizeext\ViewHelpers}
+
+<f:alias map="{event: index.originalObject}">
+
+	<f:debug title="" inline="0">{_all}</f:debug>
+
+	<div class="panel js-schulung event panel-default neu-{event.new} state-{index.state}" 
+		data-request="{event.request}"
+		data-eventtype="{event.eventtype}" 
+		data-eventform="{event.eventform}" 
+		data-abstract="{event.abstract}" 
+		data-new="{f:if(condition: '{event.new}', then: '1', else: '0')}" 
+		data-startdate="{index.startDate->f:format.date(format: 'Y-m-d')}" 
+		data-enddate="{index.endDate->f:format.date(format: 'Y-m-d')}" 
+		data-position="{cycle}">
+		<div class="panel-body">
+			<div class="topPart">
+				<div class="metabar">
+					<span class="eventtype">
+						<f:switch expression="{event.eventtype}">
+							<f:case value="1">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.online', extensionName="km_calendarizeext")}</f:case>
+							<f:case value="2">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.coaching', extensionName="km_calendarizeext")}</f:case>
+							<f:defaultCase>{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.eventtype.presence', extensionName="km_calendarizeext")}</f:defaultCase>
+						</f:switch>
+					</span>
+
+					<f:if condition="{event.new}">
+						<span class="divider"></span>
+						<span class="newtag">{f:translate(key: 'tx_kmcalendarizeext_domain_model_events.new', extensionName="km_calendarizeext")}</span>
+					</f:if>
+				</div>
+
+				<p class="title">
+					<c:link.index index="{index}">
+						<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+					</c:link.index>
+				</p>				
+				
+			</div>	
+
+			<div class="bottomPart">
+				<p class="eventdate">
+					<f:if condition="{index.state}=='1'">
+						<f:then>
+							Terminbekanntgabe folgt
+						</f:then>
+						<f:else>
+							<f:if condition="{event.request}">
+								<f:then>
+									auf Anfrage
+								</f:then>
+								<f:else>
+									{index.startDate->f:format.date(format: 'd.m.')}
+									<f:if condition="{index.startDate->f:format.date(format: 'd.m.')} != {index.endDate->f:format.date(format: 'd.m.')}">
+										bis {index.endDate->f:format.date(format: 'd.m.')}
+									</f:if>
+									{index.endDate->f:format.date(format: 'Y')}
+								</f:else>
+							</f:if>
+						</f:else>
+					</f:if>
+				</p>				
+			
+				<p class="text-right"><a href="/support-schulungen/schulungen/" class="btn btn-primary js-schulung-morebutton">Details</a></p>
+			</div>
+
+			<div class="full-content js-schulung-details">
+				<div class="closebutton js-close"><span>schließen</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path></svg> </div>
+				<div class="inner">
+				
+					<h3>{event.title}</h3>
+					<table align="left" border="0" cellpadding="5" style="width:100%" class="contenttable">
+						<tbody>
+							
+							<f:if condition="{event.targetgroup}">
+								<tr>
+									<td style="width:200px"><b>Zielgruppe</b></td>
+									<td>{event.targetgroup->f:format.raw()}</td>
+								</tr>
+							</f:if>
+
+							<f:if condition="{event.requirments}">
+								<tr>
+									<td style="vertical-align:top; width:200px"><b>Voraussetzungen</b></td>
+									<td>{event.requirments->f:format.raw()}</td>
+								</tr>
+							</f:if>
+
+							<f:if condition="{event.description}">
+								<tr>
+									<td style="vertical-align:top; width:200px"><b>Inhalt</b></td>
+									<td>
+										{event.description->f:format.html()}
+									</td>
+								</tr>
+							</f:if>
+
+							<f:if condition="{event.fee}">
+								<tr>
+									<td style="width:200px"><b>Schulungsgebühr</b></td>
+									<td>{event.fee},00 € zzgl. MwSt.</td>
+								</tr>
+							</f:if>
+
+							<tr>
+							
+								<td style="width:200px"><b>Termine</b></td>
+								<td>									
+									<f:if condition="{index.state}=='2'">
+										<f:then>
+											Termine nach Absprache
+										</f:then>
+										<f:else>										
+											
+											<f:if condition="{index.state}=='1'">
+												<f:then>
+													Terminbekanntgabe folgt
+												</f:then>
+												<f:else>
+													<f:if condition="{event.request}">
+														<f:then>
+															auf Anfrage
+														</f:then>
+														<f:else>
+															{index.startDate->f:format.date(format: 'd.m.')}
+															<f:if condition="{index.startDate->f:format.date(format: 'd.m.')} != {index.endDate->f:format.date(format: 'd.m.')}">
+																bis {index.endDate->f:format.date(format: 'd.m.')}
+															</f:if>
+															{index.endDate->f:format.date(format: 'Y')}<br/>
+															<f:comment>
+																<small><kmcext:Diffdays startDate="{index.startDate}" endDate="{index.endDate}"/> Tag(e)</small><br/>
+															</f:comment>
+														</f:else>
+													</f:if>
+												</f:else>
+											</f:if>
+										</f:else>
+									</f:if>
+								</td>
+							</tr>
+							<tr>
+								<td style="width:200px"><b>Dauer</b></td>
+								<td>
+								
+									<f:format.date format="G:i">{index.startTime - 3600}</f:format.date> bis ca. <f:format.date format="G:i">{index.endTime - 3600}</f:format.date> Uhr
+									
+								</td>
+							</tr>
+							<tr>
+								<td><strong>Schulungsort: </strong></td>
+								<td>
+									
+
+									<f:if condition="{event.location}">
+										<f:then>
+											{event.location->f:format.raw()}
+										</f:then>
+										<f:else>
+											
+											<f:switch expression="{event.eventtype}">
+												<f:case value="1">
+													Online
+												</f:case>
+												<f:case value="2">
+													nach Abstimmung / beim Kunden vor Ort
+												</f:case>
+												<f:defaultCase>
+													Abhängig von der Teilnehmerzahl, findet die Schulung in Erfurt oder in Weimar statt.
+												</f:defaultCase>
+											</f:switch>
+										</f:else>
+									</f:if>
+								</td>
+							</tr>
+						</tbody>
+					</table> 
+	
+						<f:if condition="{settings.detailPid}">
+							<c:link.index index="{index}" class="btn btn-default btn-primary">
+								<span>zum Buchungsformular</span>
+								<span class="glyphicon glyphicon-arrow-right"></span>
+							</c:link.index>
+						</f:if>
+					</p>
+				</div>
+					
+					
+			</div>
+			
+		</div>
+	</div>
+</f:alias>
+

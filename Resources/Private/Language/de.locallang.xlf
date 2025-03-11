@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:km_calendarizeext/Resources/Private/Language/locallang.xlf" date="2023-11-01T09:33:43Z" product-name="km_calendarizeext">
+		<header/>
+		<body>
+			<trans-unit id="module.dashboard.group.calendarize.title" resname="module.dashboard.group.calendarize.title">
+				<source>Trainings</source>
+				<target state="translated">Schulungen</target>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab" resname="mlang_tabs_tab">
+				<source>Trainings</source>
+				<target state="translated">Schulungen</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events" resname="tx_kmcalendarizeext_domain_model_events">
+				<source>Qundis Events</source>
+				<target state="translated">Qundis Daten</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.new" resname="tx_kmcalendarizeext_domain_model_events.new">
+				<source>New</source>
+				<target state="translated">Neu</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.request" resname="tx_kmcalendarizeext_domain_model_events.request">
+				<source>At Request</source>
+				<target state="translated">Auf Anfrage</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.pal_common" resname="tx_kmcalendarizeext_domain_model_events.pal_common">
+				<source>Genral Settings</source>
+				<target state="translated">Allgemein</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.pal_costs" resname="tx_kmcalendarizeext_domain_model_events.pal_costs">
+				<source>Costs</source>
+				<target state="translated">Kosten</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.pal_location" resname="tx_kmcalendarizeext_domain_model_events.pal_location">
+				<source>Location Settings</source>
+				<target state="translated">Veranstaltungsort</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.pal_requirements" resname="tx_kmcalendarizeext_domain_model_events.pal_requirements">
+				<source>Requirements</source>
+				<target state="translated">Voraussetzungen</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.eventtype" resname="tx_kmcalendarizeext_domain_model_events.eventtype">
+				<source>Event-Type</source>
+				<target state="translated">Event-Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.eventtype.presence" resname="tx_kmcalendarizeext_domain_model_events.eventtype.presence">
+				<source>Presence</source>
+				<target state="translated">Präsenz</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.eventtype.online" resname="tx_kmcalendarizeext_domain_model_events.eventtype.online">
+				<source>Online</source>
+				<target state="translated">Online</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.eventtype.coaching" resname="tx_kmcalendarizeext_domain_model_events.eventtype.coaching">
+				<source>Coaching</source>
+				<target state="translated">Coaching</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.qundis_location" resname="tx_kmcalendarizeext_domain_model_events.qundis_location">
+				<source>Qundis Location</source>
+				<target state="translated">Veranstaltungsort bei Qundis</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.qundis_locationText" resname="tx_kmcalendarizeext_domain_model_events.qundis_locationText">
+				<source>Depending on the number of participants, the training will take place in Erfurt or Weimar.</source>
+				<target state="translated">Abhängig von der Teilnehmerzahl, findet die Schulung in Erfurt oder in Weimar statt.</target>
+			</trans-unit>	
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.fee" resname="tx_kmcalendarizeext_domain_model_events.fee">
+				<source>Fee toal</source>
+				<target state="translated">Eventkosten insgesamt</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.costspernight" resname="tx_kmcalendarizeext_domain_model_events.costspernight">
+				<source>Hotelcosts per Night</source>
+				<target state="translated">Hotelcosts per Night</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.location_text" resname="tx_kmcalendarizeext_domain_model_events.location_text">
+				<source>Qundis Location - alt. Text</source>
+				<target state="translated">Veranstaltungsort - alt. Text</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.targetgroup" resname="tx_kmcalendarizeext_domain_model_events.targetgroup">
+				<source>Target-Grpup</source>
+				<target state="translated">Zielgruppe</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.show_requirements" resname="tx_kmcalendarizeext_domain_model_events.show_requirements">
+				<source>Show conditions of participation</source>
+				<target state="translated">Teilnahmebedingungen anzeigen</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.requirments" resname="tx_kmcalendarizeext_domain_model_events.requirments">
+				<source>Requirments</source>				
+				<target state="translated">Voraussetzunge</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.overnightstays" resname="tx_kmcalendarizeext_domain_model_events.overnightstays">
+				<source>Overnightstays</source>
+				<target state="translated">Anzahl Übernachtungen</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.semester" resname="tx_kmcalendarizeext_domain_model_events.semester">
+				<source>Semester</source>
+				<target state="translated">Semester</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.semester.sem1" resname="tx_kmcalendarizeext_domain_model_events.semester.sem1">
+				<source>1st Semester</source>
+				<target state="translated">1. Halbjahr</target>				
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.semester.sem2" resname="tx_kmcalendarizeext_domain_model_events.semester.sem2">
+				<source>2nd Semester</source>
+				<target state="translated">2. Halbjahr</target>
+			</trans-unit>
+			<trans-unit id="tx_calendarize_domain_model_event.tx_extbase_type.Tx_KmCalendarizeext_Events" resname="tx_calendarize_domain_model_event.tx_extbase_type.Tx_KmCalendarizeext_Events">
+				<source>Extend Calendarize Events</source>
+				<target state="translated">Extend Calendarize Events</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext.tx_extbase_type" resname="tx_kmcalendarizeext.tx_extbase_type">
+				<source>Record Type</source>
+				<target state="translated">Record Type</target>
+			</trans-unit>
+
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form" resname="tx_kmcalendarizeext_domain_model_events.form">    
+				<source>Event-Form</source>
+                <target state="translated">Schulung</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.training" resname="tx_kmcalendarizeext_domain_model_events.form.training">    
+				<source>Training</source>
+                <target state="translated">Schulung</target>
+			</trans-unit>
+            <trans-unit id="tx_kmcalendarizeext_domain_model_events.form.practical" resname="tx_kmcalendarizeext_domain_model_events.form.practical">    
+				<source>Practical workshop</source>
+                <target state="translated">Praxis-Workshop</target>
+			</trans-unit>
+            <trans-unit id="tx_kmcalendarizeext_domain_model_events.form.technical" resname="tx_kmcalendarizeext_domain_model_events.form.technical">    
+				<source>Technical seminar</source>
+                <target state="translated">Technikseminar</target>
+			</trans-unit>
+            <trans-unit id="tx_kmcalendarizeext_domain_model_events.form.coaching" resname="tx_kmcalendarizeext_domain_model_events.form.coaching">    
+				<source>Coaching</source>
+                <target state="translated">Coaching</target>
+			</trans-unit>
+            <trans-unit id="tx_kmcalendarizeext_domain_model_events.form.cert" resname="tx_kmcalendarizeext_domain_model_events.form.cert">    
+				<source>Certification</source>
+                <target state="translated">Zertifizierung</target>
+			</trans-unit>
+            <trans-unit id="tx_kmcalendarizeext_domain_model_events.form.msbg" resname="tx_kmcalendarizeext_domain_model_events.form.msbg">    
+				<source>MsbG-Coaching</source>
+                <target state="translated">MsbG-Choaching</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.workshop" resname="tx_kmcalendarizeext_domain_model_events.form.workshop">    
+				<source>Workshop</source>
+                <target state="translated">Workshop</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.workshop" resname="tx_kmcalendarizeext_domain_model_events.form.workshop">    
+				<source>Workshop</source>
+                <target state="translated">Workshop</target>
+			</trans-unit>
+
+			<!-- qamr, qwalkby, technik, rauchmelder-->
+
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.qamr" resname="tx_kmcalendarizeext_domain_model_events.form.qamr">    
+				<source>Q-AMR</source>
+                <target state="translated">Q-AMR</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.qwalkby" resname="tx_kmcalendarizeext_domain_model_events.form.qwalkby">    
+				<source>Q walk-by</source>
+                <target state="translated">Q walk-by</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.technik" resname="tx_kmcalendarizeext_domain_model_events.form.technik">    
+				<source>Technical</source>
+                <target state="translated">Technik</target>
+			</trans-unit>
+			<trans-unit id="tx_kmcalendarizeext_domain_model_events.form.rauchmelder" resname="tx_kmcalendarizeext_domain_model_events.form.rauchmelder">    
+				<source>Smoke-Dingens</source>
+                <target state="translated">Rauchmelder</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

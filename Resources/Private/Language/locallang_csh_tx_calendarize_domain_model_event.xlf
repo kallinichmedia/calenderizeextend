@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:km_calendarizeext/Resources/Private/Language/locallang_csh_tx_calendarize_domain_model_event.xlf" date="2023-11-01T09:33:43Z" product-name="km_calendarizeext">
+		<header/>
+		<body>
+			<trans-unit id="new.description" resname="new.description">
+				<source>new</source>
+			</trans-unit>
+			<trans-unit id="eventtype.description" resname="eventtype.description">
+				<source>eventtype</source>
+			</trans-unit>
+			<trans-unit id="qundis_location.description" resname="qundis_location.description">
+				<source>qundisLocation</source>
+			</trans-unit>
+			<trans-unit id="fee.description" resname="fee.description">
+				<source>fee</source>
+			</trans-unit>
+			<trans-unit id="costspernight.description" resname="costspernight.description">
+				<source>costspernight</source>
+			</trans-unit>
+			<trans-unit id="location_text.description" resname="location_text.description">
+				<source>locationText</source>
+			</trans-unit>
+			<trans-unit id="targetgroup.description" resname="targetgroup.description">
+				<source>targetgroup</source>
+			</trans-unit>
+			<trans-unit id="show_requirements.description" resname="show_requirements.description">
+				<source>showRequirements</source>
+			</trans-unit>
+			<trans-unit id="requirments.description" resname="requirments.description">
+				<source>requirments</source>
+			</trans-unit>
+			<trans-unit id="overnightstays.description" resname="overnightstays.description">
+				<source>overnightstays</source>
+			</trans-unit>
+			<trans-unit id="semester.description" resname="semester.description">
+				<source>semester</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

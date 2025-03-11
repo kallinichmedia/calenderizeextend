@@ -1,0 +1,19 @@
+<?php
+
+
+defined('TYPO3_MODE') or die();
+
+
+
+call_user_func(function () {
+    $GLOBALS['TCA']['tx_calendarize_domain_model_configuration']['columns']['km_new'] = [
+        'exclude' => false,
+        'label' => 'Neu',
+        'config' => [
+            'type' => 'check',
+            'default' => 0,
+        ],
+    ];
+
+    $GLOBALS['TCA']['tx_calendarize_domain_model_configuration']['palettes']['base']['showitem'] .= ', km_new';
+});

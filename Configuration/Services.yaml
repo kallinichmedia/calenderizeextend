@@ -1,0 +1,8 @@
+services:
+  Km\KmCalendarizeext\Domain\Model\Event:
+    public: true
+    autowire: true
+    autoconfigure: true
+
+  HDNET\Calendarize\Domain\Model\Event:
+    alias: Km\KmCalendarizeext\Domain\Model\Event
