@@ -1,165 +1,463 @@
 <?php
 
-declare(strict_types=1);
 
 namespace Km\KmCalendarizeext\Domain\Model;
 
-use HDNET\Calendarize\Domain\Model\Event as BaseEvent;
 
-class Event extends BaseEvent
+/**
+ * This file is part of the "Extend Calendarize" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * (c) 2023 
+ */
+
+/**
+ * Events
+ */
+class Event extends \HDNET\Calendarize\Domain\Model\Event
 {
-    protected bool $new = false;
-    protected bool $request = false;
-    protected int $eventtype = 0;
-    protected int $eventform = 0;
-    protected bool $qundisLocation = false;
-    protected int $fee = 0;
-    protected ?int $costspernight = null;
-    protected string $locationText = '';
-    protected string $targetgroup = '';
-    protected bool $showRequirements = false;
-    protected string $requirments = '';
-    protected int $overnightstays = 0;
-    protected int $maxpersons = 0;
-    protected int $semester = 0;
 
-    public function getCostspernight(): ?int
+    /**
+     * new
+     *
+     * @var bool
+     */
+    protected $new = false;
+
+    /**
+     * request
+     *
+     * @var bool
+     */
+    protected $request = false;
+
+    /**
+     * eventtype
+     *
+     * @var int
+     */
+    protected $eventtype = 0;
+
+    /**
+     * eventform
+     *
+     * @var int
+     */
+    protected $eventform = 0;
+
+    /**
+     * location
+     *
+     * @var bool
+     */
+    protected $qundisLocation = false;
+
+    /**
+     * fee
+     *
+     * @var int
+     */
+    protected $fee = 0;
+
+    /**
+     * costspernight
+     *
+     * @var int
+     */
+    protected $costspernight = null;
+
+    /**
+     * locationText
+     *
+     * @var string
+     */
+    protected $locationText = '';
+
+    /**
+     * targetgroup
+     *
+     * @var string
+     */
+    protected $targetgroup = '';
+
+    /**
+     * showRequirements
+     *
+     * @var bool
+     */
+    protected $showRequirements = false;
+
+    /**
+     * requirments
+     *
+     * @var string
+     */
+    protected $requirments = '';
+
+    /**
+     * overnightstays
+     *
+     * @var int
+     */
+    protected $overnightstays = 0;
+
+    /**
+     * maxpersons
+     *
+     * @var int
+     */
+    protected $maxpersons = 0;
+
+    /**
+     * semester
+     *
+     * @var int
+     */
+    protected $semester = 0;
+
+    /**
+     * Returns the costspernight
+     *
+     * @return int
+     */
+    public function getCostspernight()
     {
         return $this->costspernight;
     }
 
-    public function setCostspernight(?int $costspernight): void
+    /**
+     * Sets the costspernight
+     *
+     * @param int $costspernight
+     * @return void
+     */
+    public function setCostspernight(int $costspernight)
     {
         $this->costspernight = $costspernight;
     }
 
-    public function getEventtype(): int
+
+
+
+    /**
+     * Returns the eventtype
+     *
+     * @return int
+     */
+    public function getEventtype()
     {
         return $this->eventtype;
     }
 
-    public function setEventtype(int $eventtype): void
+    /**
+     * Sets the eventtype
+     *
+     * @param int $eventtype
+     * @return void
+     */
+    public function setEventtype(int $eventtype)
     {
         $this->eventtype = $eventtype;
     }
 
-    public function getEventform(): int
+    /**
+     * Returns the eventform
+     *
+     * @return int
+     */
+
+    public function getEventform()
     {
         return $this->eventform;
     }
 
-    public function setEventform(int $eventform): void
+    /**
+     * Sets the eventform
+     *
+     * @param int $eventform
+     * @return void
+     */
+
+    public function setEventform(int $eventform)
     {
         $this->eventform = $eventform;
     }
 
-    public function getFee(): int
+    /**
+     * Returns the fee
+     *
+     * @return int
+     */
+    public function getFee()
     {
         return $this->fee;
     }
 
-    public function setFee(int $fee): void
+    /**
+     * Sets the fee
+     *
+     * @param int $fee
+     * @return void
+     */
+    public function setFee(int $fee)
     {
         $this->fee = $fee;
     }
 
-    public function isQundisLocation(): bool
+    /**
+     * Returns the location
+     *
+     * @return bool
+     */
+    public function getQundisLocation()
     {
         return $this->qundisLocation;
     }
 
-    public function setQundisLocation(bool $qundisLocation): void
+    /**
+     * Sets the location
+     *
+     * @param bool $location
+     * @return void
+     */
+    public function setQundisLocation(bool $qundisLocation)
     {
-        $this->qundisLocation = $qundisLocation;
+        $this->qundisLocation = $QundisLocation;
     }
 
-    public function getLocationText(): string
+    /**
+     * Returns the boolean state of location
+     *
+     * @return bool
+     */
+    public function isQundisLocation()
+    {
+        return $this->qundisLocation;
+    }
+
+    /**
+     * Returns the locationText
+     *
+     * @return string
+     */
+    public function getQundisLocationText()
     {
         return $this->locationText;
     }
 
-    public function setLocationText(string $locationText): void
+    /**
+     * Sets the locationText
+     *
+     * @param string $locationText
+     * @return void
+     */
+    public function setLocationText(string $locationText)
     {
         $this->locationText = $locationText;
     }
 
-    public function getTargetgroup(): string
+    /**
+     * Returns the targetgroup
+     *
+     * @return string
+     */
+    public function getTargetgroup()
     {
         return $this->targetgroup;
     }
 
-    public function setTargetgroup(string $targetgroup): void
+    /**
+     * Sets the targetgroup
+     *
+     * @param string $targetgroup
+     * @return void
+     */
+    public function setTargetgroup(string $targetgroup)
     {
         $this->targetgroup = $targetgroup;
     }
 
-    public function isShowRequirements(): bool
+    /**
+     * Returns the showRequirements
+     *
+     * @return bool
+     */
+    public function getShowRequirements()
     {
         return $this->showRequirements;
     }
 
-    public function setShowRequirements(bool $showRequirements): void
+    /**
+     * Sets the showRequirements
+     *
+     * @param bool $showRequirements
+     * @return void
+     */
+    public function setShowRequirements(bool $showRequirements)
     {
         $this->showRequirements = $showRequirements;
     }
 
-    public function getRequirments(): string
+    /**
+     * Returns the boolean state of showRequirements
+     *
+     * @return bool
+     */
+    public function isShowRequirements()
+    {
+        return $this->showRequirements;
+    }
+
+    /**
+     * Returns the requirments
+     *
+     * @return string
+     */
+    public function getRequirments()
     {
         return $this->requirments;
     }
 
-    public function setRequirments(string $requirments): void
+    /**
+     * Sets the requirments
+     *
+     * @param string $requirments
+     * @return void
+     */
+    public function setRequirments(string $requirments)
     {
         $this->requirments = $requirments;
     }
 
-    public function getOvernightstays(): int
+    /**
+     * Returns the overnightstays
+     *
+     * @return int
+     */
+    public function getOvernightstays()
     {
         return $this->overnightstays;
     }
 
-    public function setOvernightstays(int $overnightstays): void
+    /**
+     * Sets the overnightstays
+     *
+     * @param int $overnightstays
+     * @return void
+     */
+    public function setOvernightstays(int $overnightstays)
     {
         $this->overnightstays = $overnightstays;
     }
 
-    public function getMaxpersons(): int
+    /**
+     * Returns the maxpersons
+     *
+     * @return int
+     */
+    public function getMaxpersons()
     {
         return $this->maxpersons;
     }
 
-    public function setMaxpersons(int $maxpersons): void
+    /**
+     * Sets the maxpersons
+     *maxpersons
+     * @param int $overnightstays
+     * @return void
+     */
+    public function setMaxpersons(int $maxpersons)
     {
-        $this->maxpersons = $maxpersons;
+        $this->overnightstays = $maxpersons;
     }
 
-    public function getSemester(): int
+    /**
+     * Returns the semester
+     *
+     * @return int
+     */
+    public function getSemester()
     {
         return $this->semester;
     }
 
-    public function setSemester(int $semester): void
+    /**
+     * Sets the semester
+     *
+     * @param int $semester
+     * @return void
+     */
+    public function setSemester(int $semester)
     {
         $this->semester = $semester;
     }
 
-    public function isNew(): bool
+    /**
+     * Returns the new
+     *
+     * @return bool
+     */
+    public function getNew()
     {
         return $this->new;
     }
 
-    public function setNew(bool $new): void
+    /**
+     * Sets the new
+     *
+     * @param bool $new
+     * @return void
+     */
+    public function setNew(bool $new)
     {
         $this->new = $new;
     }
 
-    public function isRequest(): bool
+    /**
+     * Returns the boolean state of new
+     *
+     * @return bool
+     */
+    public function isNew()
+    {
+        return $this->new;
+    }
+
+
+    /**
+    * Returns the request
+    *
+    * @return bool
+    */
+    public function getRequest()
     {
         return $this->request;
     }
 
-    public function setRequest(bool $request): void
+    /**
+     * Sets the request
+     *
+     * @param bool $request
+     * @return void
+     */
+    public function setRequest(bool $request)
     {
         $this->request = $request;
     }
+
+    /**
+     * Returns the boolean state of request
+     *
+     * @return bool
+     */
+    public function isRequest()
+    {
+        return $this->request;
+    }
+
+
 }
+
+
